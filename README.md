@@ -87,8 +87,8 @@ Once you've set up the shell (the _producer_ of the messages), you'll likely nee
 
 I'll eventually add some info on setting up the consumer, with details about using Emacs as the consumer.
 
-## Other
-### Miscellany
+## Miscellany
+### Notes
   - Before I tested this, I guessed that the most efficient implementation would be the one that never forks other processes.  This guess was wrong; the `pdksh` implementation is faster.  Note the 18 forked `vis(1)` processes:
 ```
 $ ktrace -di -tx time ksh osc7.test >/dev/null
@@ -110,7 +110,7 @@ Regardless, I rarely encounter directories whose names contain characters outsid
 
   - The `bash` implementation doesn't use `PROMPT_COMMAND`.  `PROMPT_COMMAND` is the obvious way to implement this stuff and had served me well for a year or so.  But `pdksh` doesn't provide `PROMPT_COMMAND`, so I had to make this work in its absence.  Turns out the same approach that works for `pdksh` works for `bash`, so you're free to use `PROMPT_COMMAND` for something else.
 
-## Bugs
+### Bugs
 It's hard to tell whether a given bug should be attributed to the producer (i.e., this implementation) or the consumer.  Testing this implementation against multiple consumers would help with this.
 
 These implementations are “robust” to the extent that they produce messages usable by the consuming processes and directory names I've tested.  I've found that they work with all reasonable directory names and most unreasoanble ones.  For now, however, consumer can fall out of sync when the producer changes to a directory whose name is something clever, like the carriage return character.
