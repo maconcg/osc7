@@ -70,7 +70,9 @@ The classic approach, which developed in contexts like the first example shown a
 One approach (used by default in [`shell-mode`](https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Tracking.html) as of Emacs 29.4) is to have the consumer watch the user's input for well-known directory-changing commands.  This fails when you change directories via some mechanism not anticipated by the watcher (examples: `cd $(mktemp -d)`, `alias ugh='cd /usr'`).
 
 Another approach is to embed the working directory in the user-visible shell prompt.  This can work in theory and in practice, but may result in abominations like this:
-`[username@hostname /usr/src/gnu/llvm/llvm/utils/gn/secondary/clang/include/clang/StaticAnalyzer/Checkers] $ `
+```
+[username@hostname /usr/src/gnu/llvm/llvm/utils/gn/secondary/clang/include/clang/StaticAnalyzer/Checkers] $ 
+```
 
 ## How do I use this?
 You'll typically want to load these functions when you start interactive shell session.  For `bash`, you would either
