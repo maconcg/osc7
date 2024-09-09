@@ -112,7 +112,7 @@ $ kdump
 	[0] = "bash"
 	[1] = "osc7.test"
 ```
-Regardless, I rarely encounter directories whose names contain characters outside the ASCII set, which means there's rarely a need to fork.
+Regardless, I rarely encounter directories whose names contain characters outside the visible ASCII set, which means there's rarely a need to fork.
 
 ### Bugs
 It's hard to tell whether a given bug should be attributed to the producer (i.e., this implementation) or the consumer.  Testing this implementation against multiple consumers would help with this.
