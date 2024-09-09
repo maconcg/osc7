@@ -89,6 +89,8 @@ I'll eventually add some info on setting up the consumer, with details about usi
 
 ## Miscellany
 ### Notes
+  - The `bash` implementation doesn't use `PROMPT_COMMAND`.  `PROMPT_COMMAND` is the obvious way to implement this stuff and had served me well for a year or so.  But `pdksh` doesn't provide `PROMPT_COMMAND`, so I had to make this work in its absence.  Turns out the same approach that works for `pdksh` works for `bash`, so you're free to use `PROMPT_COMMAND` for something else.
+
   - Before I tested this, I guessed that the most efficient implementation would be the one that never forks other processes.  This guess was wrong; the `pdksh` implementation is faster.  Note the 18 forked `vis(1)` processes:
 ```
 $ ktrace -di -tx time ksh osc7.test >/dev/null
@@ -107,8 +109,6 @@ $ kdump
 	[1] = "osc7.test"
 ```
 Regardless, I rarely encounter directories whose names contain characters outside the ASCII set, which means there's no need to fork.
-
-  - The `bash` implementation doesn't use `PROMPT_COMMAND`.  `PROMPT_COMMAND` is the obvious way to implement this stuff and had served me well for a year or so.  But `pdksh` doesn't provide `PROMPT_COMMAND`, so I had to make this work in its absence.  Turns out the same approach that works for `pdksh` works for `bash`, so you're free to use `PROMPT_COMMAND` for something else.
 
 ### Bugs
 It's hard to tell whether a given bug should be attributed to the producer (i.e., this implementation) or the consumer.  Testing this implementation against multiple consumers would help with this.
