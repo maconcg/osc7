@@ -74,7 +74,7 @@ Subordinate goals include:
 [username@hostname /usr/src/gnu/llvm/llvm/utils/gn/secondary/clang/include/clang/StaticAnalyzer/Checkers] $ 
 ```
 
-- A forward-looking approach, which does not yet exist, would be for the shell itself to implement an escape sequence (say, `\o`) that the user can then include in the value of `PS1`.  This would work similarly to existing sequences, like `\w`, and `\H`.  The `\o` sequence would expand to an OSC-7 message encoding the current working directory.  More formal standardization may be a prerequisite to this.
+- A forward-looking approach, which does not yet exist, would be for the shell itself to implement an escape sequence (say, `\o`) that the user can then include in the value of `PS1`.  This would work similarly to existing sequences, like `\w` or `\H`.  The `\o` sequence would expand to an OSC-7 message encoding the current working directory.  More formal standardization may be a prerequisite to this.
 
 ## How do I use this?
 You'll typically want to load these functions when you start interactive shell session.  For `bash`, you would either
