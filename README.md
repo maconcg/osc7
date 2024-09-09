@@ -6,7 +6,7 @@ The files in this repository provide robust implementations of OSC-7 output supp
 
   - __OSC-7__ refers to a kind of OSC message used to communicate a process's working directory.  As of writing, it isn't described by ECMA-48 or any other “official” document, but there's been [some discussion](https://gitlab.freedesktop.org/terminal-wg/specifications/-/issues/20) on that.
 
-  - The __producer__ process sends an OSC-7 message to its __consumer__ process.  The __consumer__ process uses the information contained in that message to provide some functionality.  Below are some clarifying examples:
+  - The __producer__ process sends an OSC-7 message to its consumer process.  The __consumer__ process uses the information contained in that message to provide some functionality.  Below are some clarifying examples:
 
 ```
   PID  PPID COMMAND
