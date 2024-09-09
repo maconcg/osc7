@@ -18,8 +18,8 @@ function osc7_path {
 }
 
 function osc7_int_to_hexescape {
-    typeset -i16 -u h="${1:?}"
-    typeset e="${h#???}"
+    typeset -i16 -ur h="${1:?}"
+    typeset -r e="${h#???}"
     if [[ "${#e}" -eq 1 ]]; then
 	echo -En "%0$e"
     else
