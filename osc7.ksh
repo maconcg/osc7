@@ -42,7 +42,7 @@ function osc7_encode {
         else
             typeset -i8 i="8#$o"
             if [[ $i -ne 10 ]] && [[ $i -lt 39 || $i -eq 92 || $i -eq 127 ]]; then
-                # Should match ASCII control characters, newline, and backslash
+                # exclude newline; match ASCII control characters and backslash
                 osc7_int_to_hexescape "$i"
             else
                 print -n "\0${i#??}"

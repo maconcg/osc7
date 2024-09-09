@@ -21,7 +21,7 @@ function osc7_encode {
 	local c="${str:0:1}"
 	local -i i="$(printf '%d' \'"$c")"
         if [[ $i -ne 10 ]] && [[ $i -lt 39 || $i -eq 92 || $i -eq 127 ]]; then
-            # Should match ASCII control characters, newline, and backslash
+            # exclude newline; match ASCII control characters and backslash
 	    printf %%%02X "$i"
 	else
 	    echo -En "$c"
