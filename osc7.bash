@@ -9,7 +9,7 @@ fi
 
 function osc7_path {
     if [[ "${1:-}" == *[!"$osc7_ok"]* ]]; then
-        typeset -r ok="${1%%[!$osc7_ok]*}"
+        local -r ok="${1%%[!$osc7_ok]*}"
         echo -En "$ok"
         shopt -s extglob
         osc7_encode "${1##+([$osc7_ok])}"
