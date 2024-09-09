@@ -33,7 +33,7 @@ A more typical modern use case shows the shell running under a graphical Emacs p
 16388  3993       `-- emacs
 13058 16388         `-- /bin/ksh -i
 ```
-The idea of a consumer process is an abstraction; ideally, the OSC-7 messages the shell would send in this example should be the same as the messages it would send in this example:
+The idea of a consumer process is an abstraction; ideally, the OSC-7 messages the shell would send in the preceding example should be the same as the messages it would send in the following example:
 
 ```
   PID  PPID COMMAND
