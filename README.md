@@ -28,7 +28,6 @@ Unambiguously, this example's producer is `ksh` and its potential consumer is `i
 ```
 A more typical modern use case shows the shell running under a graphical Emacs process.  OSC-7 messages are especially useful in this scenario because Emacs can use the shell's working directory in many ways.  In our context, we can abstract away all ancestors consumer process.  The relevant lines from this example, then, are these:
 
-
 ```
   PID  PPID COMMAND
 16388  3993       `-- emacs
@@ -36,14 +35,12 @@ A more typical modern use case shows the shell running under a graphical Emacs p
 ```
 The idea of a consumer process is an abstraction; ideally, the OSC-7 messages the shell would send in this example should be the same as the messages it would send in this example:
 
-
 ```
   PID  PPID COMMAND
 40178  3993       `-- /usr/X11R6/bin/xterm
 13058 40178         `-- /bin/ksh -i
 ```
 The idea of a producer process is also an abstraction.  Once we've respectively told `bash` and `ksh` how to send OSC-7 messages, we can swap one shell for the other:
-
 
 ```
   PID  PPID COMMAND
