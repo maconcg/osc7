@@ -61,7 +61,7 @@ The secondary goal is to have implementations that I can treat as _black-box abs
 
 Subordinate goals include:
 1. Accommodate nonstandard characters.
-  - The “body” of an OSC-7 message is a [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) [file URI](https://en.wikipedia.org/wiki/File_URI_scheme).  This means that in order to accommodate less-common characters in path names, we need to tell the shell how to perform that transformation.  In `ksh`, this is made more difficult by the lack of a `printf` builtin, which would facilitate hexadecimal conversion.  My solution is to call in ([`vis(1)`](https://man.openbsd.org/vis.1) for help transforming such characters.
+  - The “body” of an OSC-7 message is a [percent-encoded](https://en.wikipedia.org/wiki/Percent-encoding) [file URI](https://en.wikipedia.org/wiki/File_URI_scheme).  This means that in order to accommodate less-common characters in path names, we need to tell the shell how to perform that transformation.  In `ksh`, this is made more difficult by the lack of a `printf` builtin, which would facilitate hexadecimal conversion.  My solution is to call in [`vis(1)`](https://man.openbsd.org/vis.1) for help transforming such characters.
 
 2. Avoid forking “helper” processes.
   - This keeps the process tree simpler and cuts down on “noise” when you're watching for execs via, say, [`ktrace(1)`](https://man.openbsd.org/ktrace.1).  Having fewer dependencies is generally conducive to portability.
