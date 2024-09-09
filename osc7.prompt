@@ -1,0 +1,19 @@
+# -*- mode: shell-script -*-
+
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 Macon Gambill
+
+# The OSC-7 message is emitted by:
+#   \033]7;file://\H$(osc7_path "$PWD")\033\134
+# These prompts are just examples.
+
+# For these to work, you'll need to have defined the functions.
+
+if [[ "${INSIDE_EMACS:-}" == *,comint ]]; then
+    if [[ -n "${KSH_VERSION:-}" || -z "${BASHOPTS:-}" ]]; then
+        set +o emacs
+    fi
+    PS1='\[\033]7;file://\H$(osc7_path "$PWD")\033\134\]\$ '
+elif [[ "${TERM:-}" == xterm-* ]]; then
+    PS1='\[\033]7;file://\H$(osc7_path "$PWD")\033\134\033[34m\]\$\[\033[0m\] '
+fi
