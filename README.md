@@ -55,7 +55,7 @@ A consumer that knows the producer's working directory can do many helpful thing
 ### Goals
 The main goal of my approach is reliability.  Ideally, the consuming program should never fall out of sync with the shell's working directory, even in corner cases like `cd $(mktemp -d)`, changing directories via aliases, etc.
 
-The secondary goal is to have implementations that I can treat as _black-box abstractions_.  I don't want to keep track of shell-specific quirks, and I want using this after I forget how it works.
+The secondary goal is to have implementations that I can treat as _black-box abstractions_.  I don't want to keep track of shell-specific quirks, and I want keep using this after I forget how it works.
 
 Subordinate goals include:
 1. Accommodate nonstandard characters.
