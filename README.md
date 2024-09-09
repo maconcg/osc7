@@ -6,7 +6,7 @@ The files in this repository provide robust implementations of OSC-7 output supp
 
   - __OSC-7__ refers to a kind of OSC message used to communicate a process's working directory.  As of writing, it isn't described by ECMA-48 or any other “official” document, but there's been [some discussion](https://gitlab.freedesktop.org/terminal-wg/specifications/-/issues/20) on that.
 
-  - The __producer__ process sends an OSC-7 message to its consumer process.  The __consumer__ process uses the information contained in that message to provide some functionality.  Below are some clarifying examples:
+  - The __producer__ process sends an OSC-7 message to its consumer process.  The __consumer__ process uses the information contained in that message to provide some functionality.  A consumer that understands OSC-7 messages will typically filter them out before displaying content to the user, thereby operating transparently (from the perspective of the user).  Below are some clarifying examples:
 
 ```
   PID  PPID COMMAND
@@ -52,6 +52,8 @@ The idea of a producer process is also an abstraction.  Once we've respectively 
 ### Benefits
 A consumer that knows the producer's working directory can do many helpful things with this information.  A conventional terminal emulator might set its frame title to reflect the shell's working directory.  Emacs might use this information to set the current window's `default-directory`, thus helping `dired` “do what you mean” when run from a shell window.
 
+For now, OSC-7 messages are the best available mechanism for sharing this information.  In the _Alternatives_ section below, two currently-used alternative approaches are described: (1) watching for certain commands, and (2) including the path in the user-visible prompt.  Alternative 1 is prone to error but works invisibly from the user's perspective.  Alternative 2 is reliable but often ugly and inconvenient.  OSC-7 messages offer these alternatives' respective advantages without dragging along their disadvantages.
+
 ### Goals
 The main goal of my approach is reliability.  Ideally, the consuming program should never fall out of sync with the shell's working directory, even in corner cases like `cd $(mktemp -d)`, changing directories via aliases, etc.
 
@@ -65,7 +67,7 @@ Subordinate goals include:
   - This keeps the process tree simpler and cuts down on “noise” when you're watching for execs via, say, [`ktrace(1)`](https://man.openbsd.org/ktrace.1).  Having fewer dependencies is generally conducive to portability.
 
 ### Alternatives
-- The classic approach, which developed in contexts like the first example shown above, is to do nothing.  For such use cases, this makes perfect sense.
+- The classic approach to directory tracking, which developed in contexts like the first example shown above, is to do nothing.  For such use cases, this makes perfect sense.
 
 - A common approach (used by default in [`shell-mode`](https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Tracking.html) as of Emacs 29.4) is to have the consumer watch the user's input for well-known directory-changing commands.  This fails when you change directories via some mechanism not anticipated by the watcher (examples: `cd $(mktemp -d)`, `alias ugh='cd /usr'`).
 
