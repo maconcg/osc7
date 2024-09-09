@@ -113,6 +113,6 @@ Regardless, I rarely encounter directories whose names contain characters outsid
 ### Bugs
 It's hard to tell whether a given bug should be attributed to the producer (i.e., this implementation) or the consumer.  Testing this implementation against multiple consumers would help with this.
 
-These implementations are “robust” to the extent that they produce messages usable by the consuming processes and directory names I've tested.  I've found that they work with all reasonable directory names and most unreasoanble ones.  For now, however, consumer can fall out of sync when the producer changes to a directory whose name is something clever, like the carriage return character.
+These implementations are “robust” to the extent that they produce messages usable by the consuming processes and directory names I've tested.  I've found that they work with all reasonable directory names and most unreasoanble ones.  For now, the consumer will fall out of sync when the producer changes to a directory whose name is something clever, like the carriage return character.
 
 The most “reasonable” names currently known _not_ to work are those that end with a newline character.
