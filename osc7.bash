@@ -3,11 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 Macon Gambill
 
-if [[ -z "${osc7_ok:-}" ]]; then
-    readonly osc7_ok="][:alnum:][:blank:][_/?.'\"\`~@\$^*(){}|<>;:+=-"
-fi
-
 function osc7_path {
+    local -r osc7_ok="][:alnum:][:blank:][_/?.'\"\`~@\$^*(){}|<>;:+=-"
     if [[ "${1:-}" == *[!"$osc7_ok"]* ]]; then
         local -r ok="${1%%[!$osc7_ok]*}"
         echo -En "$ok"
