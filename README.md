@@ -26,7 +26,7 @@ Unambiguously, this example's producer is `ksh` and its potential consumer is `i
 16388  3993       `-- emacs
 13058 16388         `-- /bin/ksh -i
 ```
-A more typical modern use case shows the shell running under a graphical Emacs process.  OSC-7 messages are especially useful in this scenario because Emacs can use the shell's working directory in many ways.  In our context, we can abstract away all ancestors consumer process.  The relevant lines from this example, then, are these:
+A more typical modern use case shows the shell running under a graphical Emacs process.  OSC-7 messages are especially useful in this scenario because Emacs can use the shell's working directory in many ways.  In our context, we can abstract away all ancestors of the consumer process.  The relevant lines from this example, then, are these:
 
 ```
   PID  PPID COMMAND
