@@ -13,7 +13,7 @@ The files in this repository provide robust implementations of OSC-7 output supp
     1     0 /sbin/init
 64722     1 -ksh (ksh)
 ```
-    - Unambiguously, this example's producer is `ksh` and its potential consumer is `init`.  For decades, this was the _only_ common use case.  There's not much need for OSC-7 messages in this case; the shell's only ancestor is `init`, which is owned by `root`, who can use other means to obtain the working directory of a process.
+Unambiguously, this example's producer is `ksh` and its potential consumer is `init`.  For decades, this was the _only_ common use case.  There's not much need for OSC-7 messages in this case; the shell's only ancestor is `init`, which is owned by `root`, who can use other means to obtain the working directory of a process.
 
 ```
   PID  PPID COMMAND
@@ -25,21 +25,21 @@ The files in this repository provide robust implementations of OSC-7 output supp
 16388  3993       `-- emacs
 13058 16388         `-- /bin/ksh -i
 ```
-    - A modern use case shows the shell running under a graphical Emacs process.  OSC-7 messages are especially useful in this scenario because Emacs can use the shell's working directory in many ways.  In our context, we can abstract away all ancestors consumer process.  The relevant lines from this example, then, are these:
+A modern use case shows the shell running under a graphical Emacs process.  OSC-7 messages are especially useful in this scenario because Emacs can use the shell's working directory in many ways.  In our context, we can abstract away all ancestors consumer process.  The relevant lines from this example, then, are these:
 
 ```
   PID  PPID COMMAND
 16388  3993       `-- emacs
 13058 16388         `-- /bin/ksh -i
 ```
-    - The idea of a consumer process is an abstraction; ideally, the OSC-7 messages the shell would send in this example should be the same as the messages it would send in this example:
+The idea of a consumer process is an abstraction; ideally, the OSC-7 messages the shell would send in this example should be the same as the messages it would send in this example:
 
 ```
   PID  PPID COMMAND
 40178  3993       `-- /usr/X11R6/bin/xterm
 13058 40178         `-- /bin/ksh -i
 ```
-    - The idea of a producer process is also an abstraction.  Once we've respectively told `bash` and `ksh` how to send OSC-7 messages, we can swap one shell for the other:
+The idea of a producer process is also an abstraction.  Once we've respectively told `bash` and `ksh` how to send OSC-7 messages, we can swap one shell for the other:
 
 ```
   PID  PPID COMMAND
